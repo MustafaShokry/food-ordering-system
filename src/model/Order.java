@@ -33,14 +33,6 @@ public class Order {
         return items;
     }
 
-    public void addItem(OrderItem orderItem) {
-        orderItems.add(orderItem);
-    }
-
-    public void removeItem(OrderItem orderItem) {
-        orderItems.remove(orderItem);
-    }
-
     public String getDeliveryNote() {
         return deliveryNote;
     }
