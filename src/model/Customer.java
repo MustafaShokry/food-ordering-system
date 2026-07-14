@@ -5,7 +5,7 @@ public class Customer {
     private final String name;
     private final String email;
     private final String phoneNumber;
-    private idCounter = 0;
+    private static idCounter = 0;
 
     public Customer(String name, String email, String phoneNumber) {
         id = idCounter++;
