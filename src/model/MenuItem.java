@@ -1,10 +1,11 @@
-package src.model;
+package model;
 
 public class MenuItem {
     private final int id;
     private final String name;
     private double price;
-    private static idCounter = 0;
+    private static int idCounter = 0;
+
 
     public MenuItem(String name, double price) {
         id = idCounter++;

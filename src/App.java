@@ -1,17 +1,15 @@
-package src;
-
 import java.util.Scanner;
-import src.model.Customer;
-import src.model.Order;
-import src.model.OrderItem;
-import src.model.MenuItem;
-import src.model.Menu;
-import src.service.OrderService;
-import src.service.ServiceFactory;
-import src.payment.PaymentMethod;
-import src.payment.PaymentType;
-import src.notification.NotificationChannel;
-import src.notification.NotificationType;
+import model.Customer;
+import model.Order;
+import model.OrderItem;
+import model.MenuItem;
+import model.Menu;
+import service.OrderService;
+import service.ServiceFactory;
+import payment.PaymentMethod;
+import payment.PaymentType;
+import notification.NotificationChannel;
+import notification.NotificationType;
 
 
 public class App {
@@ -23,7 +21,7 @@ public class App {
     private final Menu menu = factory.getMenu();
 
     private final OrderService orderService =
-            factory.getOrderService();
+            factory.createOrderService();
 
     public static void main(String[] args) {
         new App().run();
@@ -79,6 +77,7 @@ public class App {
             System.out.print("Enter the Item ID you want to add or -1 to exit: ");
 
             int id = scanner.nextInt();
+            scanner.nextLine();
 
             if(id == -1)
                 break;
@@ -114,9 +113,8 @@ public class App {
                             .quantity(quantity)
                             .largeSize(large)
                             .extraSauce(sauce)
-                            .build();
-
-            );
+                            .build()
+                    );
 
         }
 
@@ -158,10 +156,17 @@ public class App {
         switch (choice){
             case 1:
                 type = PaymentType.CASH;
+                break;
             case 2:
                 type = PaymentType.CARD;
+                break;
             case 3:
                 type = PaymentType.VALUE;
+                break;
+            default:
+                System.out.println("Invalid choice.");
+                type = null;
+                break;
         }
 
         return factory.createPaymentMethod(type);
@@ -182,7 +187,7 @@ public class App {
 
         NotificationType type = choice == 1 ? NotificationType.EMAIL : NotificationType.SMS;
 
-        return factory.createNotificationService(type);
+        return factory.createNotificationChannel(type);
 
     }
 

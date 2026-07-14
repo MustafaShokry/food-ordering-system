@@ -1,14 +1,18 @@
-import src.notification.NotificationChannel;
-import src.notification.EmailNotification;
-import src.notification.SmsNotification;
-import src.notification.NotificationType;
-import src.payment.PaymentMethod;
-import src.payment.CardPayment;
-import src.payment.CashPayment;
-import src.payment.PaymentType;
-import src.printer.ReceiptPrinter;
-import src.model.Menu;
-import src.model.MenuItem;
+package service;
+
+import notification.NotificationChannel;
+import notification.EmailNotification;
+import notification.SmsNotification;
+import notification.NotificationType;
+import payment.PaymentMethod;
+import payment.CardPayment;
+import payment.CashPayment;
+import payment.InstallmentByValuPayment;
+import payment.PaymentType;
+import printer.ReceiptPrinter;
+import service.OrderService;
+import model.Menu;
+import model.MenuItem;
 
 
 public final class ServiceFactory {
@@ -42,6 +46,7 @@ public final class ServiceFactory {
         return switch (paymentType) {
             case CASH -> new CashPayment();
             case CARD -> new CardPayment();
+            case VALUE -> new InstallmentByValuPayment();
         };
     }
 
