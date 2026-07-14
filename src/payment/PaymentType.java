@@ -1,4 +1,5 @@
 public enum PaymentType {
     CASH,
-    CARD
+    CARD,
+    VALUE
 }

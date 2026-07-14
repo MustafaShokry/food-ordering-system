@@ -7,6 +7,8 @@ import src.payment.CardPayment;
 import src.payment.CashPayment;
 import src.payment.PaymentType;
 import src.printer.ReceiptPrinter;
+import src.model.Menu;
+import src.model.MenuItem;
 
 
 public final class ServiceFactory {
@@ -21,6 +23,18 @@ public final class ServiceFactory {
 
     public static ServiceFactory getInstance() {
         return Holder.INSTANCE;
+    }
+
+    public Menu getMenu() {
+
+        Menu menu = new Menu();
+
+        menu.addItem(new MenuItem("Burger", 120));
+        menu.addItem(new MenuItem("Pizza", 180));
+        menu.addItem(new MenuItem("Fries", 60));
+        menu.addItem(new MenuItem("Cola", 35));
+
+        return menu;
     }
 
     public PaymentMethod createPaymentMethod(PaymentType paymentType) {

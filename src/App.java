@@ -20,6 +20,8 @@ public class App {
 
     private final ServiceFactory factory = ServiceFactory.getInstance();
 
+    private final Menu menu = factory.getMenu();
+
     private final OrderService orderService =
             factory.getOrderService();
 
