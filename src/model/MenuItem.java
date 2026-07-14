@@ -1,10 +1,13 @@
-public class MenuItem {
-    private int id;
-    private String name;
-    private double price;
+package src.model;
 
-    public MenuItem(int id, String name, double price) {
-        this.id = id;
+public class MenuItem {
+    private final int id;
+    private final String name;
+    private double price;
+    private idCounter = 0;
+
+    public MenuItem(String name, double price) {
+        id = idCounter++;
         this.name = name;
         this.price = price;
     }

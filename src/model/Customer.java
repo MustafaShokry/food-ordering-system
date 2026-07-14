@@ -1,11 +1,14 @@
-public class Customer {
-    private int id;
-    private String name;
-    private String email;
-    private String phoneNumber;
+package src.model
 
-    public Customer(int id, String name, String email, String phoneNumber) {
-        this.id = id;
+public class Customer {
+    private final int id;
+    private final String name;
+    private final String email;
+    private final String phoneNumber;
+    private idCounter = 0;
+
+    public Customer(String name, String email, String phoneNumber) {
+        id = idCounter++;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;

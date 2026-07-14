@@ -1,5 +1,6 @@
+package src.model
+
 import java.util.List;
-import src.model.MenuItem;
 
 public class Menu {
     private List<MenuItem> items;
