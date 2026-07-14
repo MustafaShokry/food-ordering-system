@@ -1,6 +1,9 @@
+package src.service;
+
 import src.model.Customer;
-import src.model.MenuItem;
 import src.model.Order;
+import src.notification.NotificationChannel;
+import src.payment.PaymentMethod;
 import src.printer.ReceiptPrinter;
 
 public class OrderService {
@@ -12,21 +15,34 @@ public class OrderService {
     }
 
 
-    public order createOrder(int orderId, Customer customer){
-        return new Order(orderId, customer);
+    public Order.Builder createOrder(Customer customer){
+        return Order.builder()
+                .customer(customer);
     }
 
-    public void addItem(Order order, MenuItem menuItem, int quantity){
-        OrderItem orderItem = new orderItem(menuItem, quantity);
-        order.addItem(orderItem);
-    }
-
-    public void removeItem(Order order, OrderItem orderItem){
-        order.removeItem(OrderItem orderItem);
-    }
-
-    public double calculateTotal(Order order) {
+    public double calculateTotal(Order order){
         return order.getTotalPrice();
+    }
+
+    public void checkout(Order order,
+                         PaymentMethod paymentMethod,
+                         NotificationService notificationService) {
+
+        double total = calculateTotal(order);
+
+        boolean success = paymentMethod.pay(total);
+
+        if (!success) {
+            System.out.println("Payment failed.");
+            return;
+        }
+
+        receiptPrinter.print(order);
+
+        notificationService.send(
+                order.getCustomer(),
+                "Your order has been placed successfully."
+        );
     }
 
 }
