@@ -1,8 +1,15 @@
 import src.model.Customer;
 import src.model.MenuItem;
 import src.model.Order;
+import src.printer.ReceiptPrinter;
 
 public class OrderService {
+
+    private final ReceiptPrinter receiptPrinter;
+
+    public OrderService(ReceiptPrinter receiptPrinter) {
+        this.receiptPrinter = receiptPrinter;
+    }
 
 
     public order createOrder(int orderId, Customer customer){
