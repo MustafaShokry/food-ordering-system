@@ -1,3 +1,5 @@
+package payment;
+
 public class InstallmentByValuPayment implements PaymentMethod {
 
     @Override

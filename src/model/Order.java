@@ -1,13 +1,15 @@
-package src.model;
+package model;
 
 import java.util.List;
 import java.util.ArrayList;
+import model.OrderItem;
+
 
 public class Order {
     // Mandatory
     private final int id;
     private final Customer customer;
-    private List<OrderItem> items;
+    private final List<OrderItem> items;
 
     // Optional
     private final String deliveryNote;
@@ -43,11 +45,11 @@ public class Order {
 
     public double getTotalPrice() {
         double totalPrice = 0.0;
-        for (OrderItem orderItem : orderItems) {
+        for (OrderItem orderItem : items) {
             totalPrice += orderItem.getSubTotalPrice();
         }
-        if (discountCode != null && !discountCode.isBlank()) {
-            total *= 0.90;
+        if (discountCode != null && !discountCode.isEmpty()) {
+            totalPrice *= 0.90;
         }
         return totalPrice;
     }
@@ -61,16 +63,16 @@ public class Order {
         // Mandatory
         private final int id;
         private Customer customer;
-        private static idCounter = 0;
+        private static int idCounter = 0;
 
         // Mandatory
-        private List<OrderItem> items = new ArrayList<>();
+        private final List<OrderItem> items = new ArrayList<>();
 
         // Optional
         private String deliveryNote;
         private String discountCode;
 
-        public Builder(int id) {
+        public Builder() {
             id = idCounter++;
         }
 

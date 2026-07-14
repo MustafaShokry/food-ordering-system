@@ -1,11 +1,11 @@
-package src.model
+package model;
 
 public class Customer {
     private final int id;
     private final String name;
     private final String email;
     private final String phoneNumber;
-    private static idCounter = 0;
+    private static int idCounter = 0;
 
     public Customer(String name, String email, String phoneNumber) {
         id = idCounter++;
@@ -18,7 +18,7 @@ public class Customer {
         return id;
     }
 
-    public int getName(){
+    public String getName(){
         return name;
     }
 

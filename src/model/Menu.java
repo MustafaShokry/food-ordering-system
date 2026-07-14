@@ -1,9 +1,10 @@
-package src.model
+package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Menu {
-    private List<MenuItem> items;
+    private final List<MenuItem> items = new ArrayList<>();
 
     public void addItem(MenuItem item) {
         items.add(item);

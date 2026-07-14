@@ -1,10 +1,10 @@
-package src.service;
+package service;
 
-import src.model.Customer;
-import src.model.Order;
-import src.notification.NotificationChannel;
-import src.payment.PaymentMethod;
-import src.printer.ReceiptPrinter;
+import model.Customer;
+import model.Order;
+import notification.NotificationChannel;
+import payment.PaymentMethod;
+import printer.ReceiptPrinter;
 
 public class OrderService {
 
@@ -26,7 +26,7 @@ public class OrderService {
 
     public void checkout(Order order,
                          PaymentMethod paymentMethod,
-                         NotificationService notificationService) {
+                         NotificationChannel notificationService) {
 
         double total = calculateTotal(order);
 
@@ -39,7 +39,7 @@ public class OrderService {
 
         receiptPrinter.print(order);
 
-        notificationService.send(
+        notificationService.sendNotification(
                 order.getCustomer(),
                 "Your order has been placed successfully."
         );
